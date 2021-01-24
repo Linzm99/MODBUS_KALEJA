@@ -80,7 +80,7 @@ Class for setting up a Motor Controller Object with its unique address.
 
 #### Input parameters
 
-| Parameter | Type |Input/Example | Description |
+| Parameter | Type | Input/Example | Description |
 | --------- | ---- | ---- | ----- | ----------- |
 | Device Address | uint8_t | 0x01, 0x05, ... | Defines the Address of the MODBUS RTU device which is set by the DIP Switch |
 | Bus | MODBUS_KALEJA | - | Asigns the Motor Controllor to the RS485 Net of a certain Serial Connection |
