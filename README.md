@@ -4,7 +4,7 @@
 
 This is a Library brings support for KALEJA Devices using MODBUS to the Arduino Environment. It lets you use all functionalities that you could have used with plain MODBUS commands, but you only have to call the functions and library does the rest.
 
-All you need is a Hardware/Software serial port on your controller to drive the RS485 Chip.
+All you need is a Hardware serial port on your controller to drive the RS485 Chip.
 
 There are no additional libraries required that are not allready included into the Arduino IDE.
 
@@ -14,7 +14,7 @@ There are no additional libraries required that are not allready included into t
 - [Documentation](#documentation)
 	- [How to setup a Serial Connection](#how-to-setup-a-serial-connection)
 
-## How to install
+# How to install
 
 To install this library follow these steps:
 
@@ -23,9 +23,9 @@ To install this library follow these steps:
 - Open your Arduino IDE. Go to Sketch>Include Library>Add .ZIP Library. Navigate to the MODBUS_KALEJA-main.zip file's location and select it.
 - The Library should now be included.
 
-## Documentation
+# Documentation
 
-### How to setup a Serial Connection
+## How to setup a Serial Connection
 
 This is a short example on how to use the library. To see the actual function descriptions click [here]
 To use this library you first have to include the library into your Arduino project.
@@ -41,15 +41,17 @@ To start the Serial Connection you also have to call the begin() function of you
 MODBUS_KALEJA bus1(Serial,1,1,2); 
 ```
 
-### How to setup a Motor Controller Object
+## How to setup a Motor Controller Object
 
 
-### Classes and Functions
+## Classes and Functions
 
-#### MODBUS_KALEJA
+### {Class} MODBUS_KALEJA
 
 Class for setting up a Serial Connection
 
-##### Input parameters
+#### Input parameters
 
-| Parameter | input | Value |
+| Parameter | Type |Input | Value |
+| --------- | ---- | ---- | ----- |
+| Serial Port | HardwareSerial | Serial, Serial1, ... | - |
