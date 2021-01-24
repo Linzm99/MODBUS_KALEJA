@@ -14,8 +14,8 @@ There are no additional libraries required that are not allready included into t
 - [Documentation](#documentation)
 	- [How to setup a Serial Connection](#how-to-setup-a-serial-connection)
 	- [How to setup a Motor Controller Object](#how-to-setup-a-motor-controller-object)
-- [Classes and Functions](#classes-and-functions)
-	-[{Class} MODBUS_KALEJA]({class}-modbus_kaleja)
+	- [Classes and Functions](#classes-and-functions)
+	
 
 # How to install
 
