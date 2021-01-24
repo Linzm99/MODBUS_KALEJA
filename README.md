@@ -71,7 +71,7 @@ Class for setting up a Serial Connection
 
 | Function | Description | Returns |
 | -------- | ----------- | ------- |
-| begin() | Starts the Serial Connection | 0 -> Success, -1 -> Port already open |
+| begin() | Starts the Serial Connection | 0 -> Success, -1 -> Port already open, -2 -> Baudrate invalid, -3 -> Parity invalid |
 | end() | Closes the Serial Connection | 0 -> Success, -1 -> Port was not open |
 
 ### {Class} MControl
@@ -89,52 +89,66 @@ Class for setting up a Motor Controller Object with its unique address.
 
 | Function | Input | Returns | Description |
 | -------- | :---: | :-----: | ----------- |
-| EEPROM_SAVE | - | 0/-1 | Save MODBUS Settings to EEPROM |
-| EEPROM_RELOAD | - | 0/-1 | Load MODBUS Settings from EEPROM |
-| DEVICE_RESET | - | 0/-1 | Softreset Device |
-| FACTORY_DEFAULTS | - | 0/-1 | Reload Factory Settings |
-| WATCHDOG_OFF | - | 0/-1 | Disable Modbus Watchdog |
-| WATCHDOG_ON | uint16_t | 0/-1 | Enable Watchdog, Timer set to Time in ms(1-65535) |
+| EEPROM_SAVE | - | ErrCode | Save MODBUS Settings to EEPROM |
+| EEPROM_RELOAD | - | ErrCode | Load MODBUS Settings from EEPROM |
+| DEVICE_RESET | - | ErrCode | Softreset Device |
+| FACTORY_DEFAULTS | - | ErrCode | Reload Factory Settings |
+| WATCHDOG_OFF | - | ErrCode | Disable Modbus Watchdog |
+| WATCHDOG_ON | uint16_t | ErrCode | Enable Watchdog, Timer set to Time in ms(1-65535) |
 | WATCHDOG_GET | - | int32_t | Get Watchdog Time in ms |
-| CURRENT_LIMIT_OFF | - | 0/-1 | Disable Current Limit |
-| CURRENT_LIMIT_ON | uint16_t | 0/-1 | Enable Current Limit. Set Current Limit to Current in mA(1-4000) |
+| CURRENT_LIMIT_OFF | - | ErrCode | Disable Current Limit |
+| CURRENT_LIMIT_ON | uint16_t | ErrCode | Enable Current Limit. Set Current Limit to Current in mA(1-4000) |
 | CURRENT_LIMIT_GET | - | int32_t | Get Current Limit in mA|
-| START_RAMP_OFF | - | 0/-1 | Disable Start Ramp |
-| START_RAMP_ON | uint16_t | 0/-1 | Enable Start Ramp. Set Ramp Time to Time in ms(1-4000) |
+| START_RAMP_OFF | - | ErrCode | Disable Start Ramp |
+| START_RAMP_ON | uint16_t | ErrCode | Enable Start Ramp. Set Ramp Time to Time in ms(1-4000) |
 | START_RAMP_GET | - | int32_t | Get Start Ramp in ms |
-| STOP_RAMP_OFF | - | 0/-1 | Disable Stop Ramp |
-| STOP_RAMP_ON | uint16_t | 0/-1 | Enable Stop Ramp. Set Ramp Time to Time in ms(1-4000) |
+| STOP_RAMP_OFF | - | ErrCode | Disable Stop Ramp |
+| STOP_RAMP_ON | uint16_t | ErrCode | Enable Stop Ramp. Set Ramp Time to Time in ms(1-4000) |
 | STOP_RAMP_GET | - | int32_t | Get Stop Ramp in ms |
-| PWM_OFF | - | 0/-1 | Set Motor Speed to 0 |
-| PWM_ON | uint16_t | 0/-1 | Set Motor Speed to pwm/10 in Percent(50-1000) |
+| PWM_OFF | - | ErrCode | Set Motor Speed to 0 |
+| PWM_ON | uint16_t | ErrCode | Set Motor Speed to pwm/10 in Percent(50-1000) |
 | PWM_GET | - | int32_t | get Motor PWM Settings in 10*Percent |
-| CM_DELAY_OFF | - | 0/-1 | Disable current monitoring delay |
-| CM_DELAY_ON | uint16_t | 0/-1 | Enable current monitoring delay. Set Time in ms(1-1000) |
+| CM_DELAY_OFF | - | ErrCode | Disable current monitoring delay |
+| CM_DELAY_ON | uint16_t | ErrCode | Enable current monitoring delay. Set Time in ms(1-1000) |
 | CM_DELAY_GET | - | int32_t | Get current monitoring delay in ms |
-| IXR_COMP_OFF | - | 0/-1 | Disable IxR Compensation |
-| IXR_COMP_ON | - | 0/-1 | Enable IxR Compensation, Set Motor Internal Resistance to mOhm(1-4000) |
+| IXR_COMP_OFF | - | ErrCode | Disable IxR Compensation |
+| IXR_COMP_ON | - | ErrCode | Enable IxR Compensation, Set Motor Internal Resistance to mOhm(1-4000) |
 | IXR_COMP_GET | - | int32_t | Get Motor Internal Resistance in mOhm |
-| MOTOR_OFF | - | 0/-1 | Disable Motor |
-| MOTOR_ON | uint16_t | 0/-1 | Enable Motor |
+| MOTOR_OFF | - | ErrCode | Disable Motor |
+| MOTOR_ON | uint16_t | ErrCode | Enable Motor |
 | MOTOR_GET | - | int32_t | Get Motor State |
-| DIR_SET | uint8_t | 0/-1 | Set Motor Direction 0-->Direction1 / 1-->Direction2 |
-| DIR_GET | uint16_t | 0/-1 | Get Motor Direction Setting |
-| BRAKE_OFF | - | 0/-1 | Disable Motor Breaking |
-| BRAKE_ON | - | 0/-1 | Enable Motor Breaking |
+| DIR_SET | uint8_t | ErrCode | Set Motor Direction 0-->Direction1 / 1-->Direction2 |
+| DIR_GET | uint16_t | ErrCode | Get Motor Direction Setting |
+| BRAKE_OFF | - | ErrCode | Disable Motor Breaking |
+| BRAKE_ON | - | ErrCode | Enable Motor Breaking |
 | BRAKE_GET | - | int32_t | Get Brake Settings |
-| OVERCURRENT_SET_SHUTOFF | - | 0/-1 | Set Behaviour to Overcurrent Shutoff |
-| OVERCURRENT_SET_LIMIT | uint16_t | 0/-1 | Set Behaviour to Overcurrent Limiting |
+| OVERCURRENT_SET_SHUTOFF | - | ErrCode | Set Behaviour to Overcurrent Shutoff |
+| OVERCURRENT_SET_LIMIT | uint16_t | ErrCode | Set Behaviour to Overcurrent Limiting |
 | OVERCURRENT_GET | - | int16_t | get Overcurrent Behaviour |
 | PROD_NUMBER | - | int64_t | Retruns Product Number |
 | HARDWARE_VERSION | - | int32_t | Returns Hardware Version |
 | SOFTWARE_VERSION | - | int32_t | Returns Software Version |
 | SERIAL_NUMBER | - | int64_t | Returns Serial Number |
-| CURRENT | - | int32_t | Returns the current being drawn by the Motor right now(0-65535) |
-| PWM | - | int32_t | Returns the pwm at which the motor is running right now |
+| CURRENT | - | int32_t | Returns the current being drawn by the Motor right now in mA(0-65535) |
+| PWM | - | int32_t | Returns the pwm at which the motor is running right now in 10*Percent|
 | DIR | - | int16_t | Returns the direction in which the motor is running right now |
 | TEMP | - | int32_t | Returns the Temperature of the Module |
 
 #### Error Codes
+
+In case one of the following errors occurrs, check if your Motor Controller is compatible to this library and if all connections are according to the RS485 Standard.
+There shouldn't be any negative feedback from the functions. Every negative Feedback is some sort of error.
+
+| ERROR Code | Description |
+| ---------- | ----------- |
+| -1 | General Error, check if Motor Controller is compatible to Library |
+| -2 | CRC_ERROR, CRC wasn't valid |
+| -0x81 | Function not supported |
+| -0x82 | Address not valid |
+| -0x83 | Number of requested Registers doesn't match |
+| -0x84 | Execution Error |
+| -0x86 | Write Error |
+
 
 ## Additional Information
 
