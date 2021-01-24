@@ -15,6 +15,7 @@ There are no additional libraries required that are not allready included into t
 	- [How to setup a Serial Connection](#how-to-setup-a-serial-connection)
 	- [How to setup a Motor Controller Object](#how-to-setup-a-motor-controller-object)
 	- [Classes and Functions](#classes-and-functions)
+		-[Test]
 	
 
 # How to install
@@ -37,7 +38,7 @@ To use this library you first have to include the library into your Arduino proj
 #include "MODBUS_KALEJA.h"
 ```
 
-Next you have to setup a Serial Connection. This is done by creating an object of the class [MODBUS_KALEJA] and feeding it the necessary parameters.
+Next you have to setup a Serial Connection. This is done by creating an object of the class [MODBUS_KALEJA](# {Class} MODBUS_KALEJA) and feeding it the necessary parameters.
 To start the Serial Connection you also have to call the begin() function of your MODBUS_KALEJA object.
 
 ```c
