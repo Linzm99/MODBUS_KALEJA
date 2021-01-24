@@ -16,8 +16,11 @@ There are no additional libraries required that are not allready included into t
 	- [How to setup a Motor Controller Object](#how-to-setup-a-motor-controller-object)
 	- [Classes and Functions](#classes-and-functions)
 		- [{Class} MODBUS_KALEJA](#{class}-modbus_kaleja)
+			- [Class Functions](#class-functions)
 		- [{Class} MControl](#{class}-mcontrol)
-	
+			- [Class Functions](#class-functions)
+			- [Error Codes](#error-codes)
+	- [Additional Information](#additional-information)
 
 # How to install
 
@@ -73,7 +76,7 @@ Class for setting up a Serial Connection
 
 ### {Class} MControl
 
-Class for setting up a Motor Controller Object with its unique address
+Class for setting up a Motor Controller Object with its unique address.
 
 #### Input parameters
 
@@ -83,3 +86,11 @@ Class for setting up a Motor Controller Object with its unique address
 | Bus | MODBUS_KALEJA | - | - | Asigns the Motor Controllor to the RS485 Net of a certain Serial Connection |
 
 #### Class Functions
+
+| Function | Description
+
+#### Error Codes
+
+## Additional Information
+
+If you want more information on any of the functions or about the error codes, there is in depth information in the datasheet of each Motor controller.
