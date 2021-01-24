@@ -20,7 +20,7 @@ There are no additional libraries required that are not allready included into t
 		- [{Class} MControl](#{class}-mcontrol)
 			- [Class Functions](#class-functions-2)
 			- [Error Codes](#error-codes)
-	- [Additional Information](#additional-information)
+- [Additional Information](#additional-information)
 
 # How to install
 
