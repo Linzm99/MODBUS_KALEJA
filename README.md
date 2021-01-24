@@ -87,6 +87,8 @@ Class for setting up a Motor Controller Object with its unique address.
 
 #### Class Functions
 
+*ErrCode values are listed [here](#error-codes).
+
 | Function | Input | Returns | Description |
 | -------- | :---: | :-----: | ----------- |
 | EEPROM_SAVE | - | ErrCode | Save MODBUS Settings to EEPROM |
