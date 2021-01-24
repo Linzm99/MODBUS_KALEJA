@@ -56,9 +56,27 @@ Class for setting up a Serial Connection
 
 #### Input parameters
 
-| Parameter | Type |Input | Value | Description |
+| Parameter | Type |Input/Example | Value | Description |
 | --------- | ---- | ---- | ----- | ----------- |
 | Serial Port | HardwareSerial | Serial, Serial1, ... | - | Defines the Serial port that the RS485 Driver is connected to |
 | Baudrate | uint8_t | 0/1 | 19200/38400 | Defines the Baudrate at which the RS485 net is running |
 | Parity | uint8_t | 0/1 | Even/None | Defines the Parity used in the RS485 net |
 | R/W-Pin | PIN | 0,1,2, ... | - | Defines the pin that the R/W Pin of the RS485 Driver is connected to |
+
+#### Class Functions
+
+| Function | Description | Returns |
+| -------- | ----------- | ------- |
+| begin() | Starts the Serial Connection | 0 -> Success, -1 -> Port already open |
+| end() | Closes the Serial Connection | 0 -> Success, -1 -> Port not open |
+
+### {Class} MODBUS_KALEJA
+
+Class for setting up a Motor Controller Object with its unique address
+
+#### Input parameters
+
+| Parameter | Type |Input/Example | Value | Description |
+| --------- | ---- | ---- | ----- | ----------- |
+| Device Address | uint8_t | 0x01, 0x05, ... | - | Defines the Address of the MODBUS RTU device which is set by the DIP Switch |
+| Bus | MODBUS_KALEJA | - | - | Asigns the Motor Controllor to the RS485 Net of a certain Serial Connection |
