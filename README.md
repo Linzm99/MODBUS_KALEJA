@@ -16,6 +16,7 @@ There are no additional libraries required that are not allready included into t
 	- [How to setup a Motor Controller Object](#how-to-setup-a-motor-controller-object)
 	- [Classes and Functions](#classes-and-functions)
 		- [{Class} MODBUS_KALEJA](#{class}-modbus_kaleja)
+		- [{Class} MControl](#{class}-mcontrol)
 	
 
 # How to install
@@ -68,9 +69,9 @@ Class for setting up a Serial Connection
 | Function | Description | Returns |
 | -------- | ----------- | ------- |
 | begin() | Starts the Serial Connection | 0 -> Success, -1 -> Port already open |
-| end() | Closes the Serial Connection | 0 -> Success, -1 -> Port not open |
+| end() | Closes the Serial Connection | 0 -> Success, -1 -> Port was not open |
 
-### {Class} MODBUS_KALEJA
+### {Class} MControl
 
 Class for setting up a Motor Controller Object with its unique address
 
@@ -80,3 +81,5 @@ Class for setting up a Motor Controller Object with its unique address
 | --------- | ---- | ---- | ----- | ----------- |
 | Device Address | uint8_t | 0x01, 0x05, ... | - | Defines the Address of the MODBUS RTU device which is set by the DIP Switch |
 | Bus | MODBUS_KALEJA | - | - | Asigns the Motor Controllor to the RS485 Net of a certain Serial Connection |
+
+#### Class Functions
