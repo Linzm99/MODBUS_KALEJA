@@ -8,12 +8,12 @@ All you need is a Hardware/Software serial port on your controller to drive the 
 
 There are no additional libraries required that are not allready included into the Arduino IDE.
 
-#Contents
+# Contents
 
 - [How to install](#How-to-install)
 - [Documentation](#documentation)
 
-##How to install
+## How to install
 
 To install this library follow these steps:
 
@@ -22,6 +22,6 @@ To install this library follow these steps:
 - Open your Arduino IDE. Go to Sketch>Include Library>Add .ZIP Library. Navigate to the MODBUS_KALEJA-main.zip file's location and select it.
 - The Library should now be included.
 
-#Documentation
+# Documentation
 
 TODO
