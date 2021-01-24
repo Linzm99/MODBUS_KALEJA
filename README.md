@@ -60,7 +60,7 @@ Class for setting up a Serial Connection
 
 #### Input parameters
 
-| Parameter | Type |Input/Example | Value | Description |
+| Parameter | Type | Input/Example | Value | Description |
 | --------- | ---- | ------------ | ----- | ----------- |
 | Serial Port | HardwareSerial | Serial, Serial1, ... | - | Defines the Serial port that the RS485 Driver is connected to |
 | Baudrate | uint8_t | 0/1 | 19200/38400 | Defines the Baudrate at which the RS485 net is running |
