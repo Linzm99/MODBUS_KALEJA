@@ -2,7 +2,7 @@
 
 !This Version is not ready to use!
 
-This is a Library brings support for KALEJA Devices using MODBUS to the Arduino Environment. It lets you use all functionalities that you could have used with plain MODBUS commands, but you only have to call the functions and library does the rest.
+This Library brings support for KALEJA Devices using MODBUS to the Arduino Environment. It lets you use all functionalities that you could have used with plain MODBUS commands, but you only have to call the functions and library does the rest.
 
 All you need is a Hardware serial port on your controller to drive the RS485 Chip.
 
