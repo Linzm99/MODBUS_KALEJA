@@ -2,7 +2,7 @@
 
 !This Version is not ready to use!
 
-This Library brings support for KALEJA Devices using MODBUS to the Arduino Environment. It lets you use all functionalities that you could have used with plain MODBUS commands, but you only have to call the functions and library does the rest.
+This Library brings support for KALEJA MODBUS Motor Controllers to the Arduino Environment. It lets you use all functionalities that you could have used with plain MODBUS commands, but you only have to call the functions and library does the rest.
 
 All you need is a Hardware serial port on your controller to drive the RS485 Chip.
 
@@ -46,10 +46,29 @@ Next you have to setup a Serial Connection. This is done by creating an object o
 To start the Serial Connection you also have to call the begin() function of your MODBUS_KALEJA object.
 
 ```c
-MODBUS_KALEJA bus1(Serial,1,1,2); 
+MODBUS_KALEJA bus1(Serial,1,1,2); //Setup an object of class MODBUS_KALEJA on the Serial Port, 38400 Baud, Parity = None, R/W pin on pin D2
+bus1.begin(); //Start the Serial Connection
 ```
 
+Your Bus is now running and ready to talk to Motor Controllers.
+
 ## How to setup a Motor Controller Object
+
+After selecting the device address with the DIP-Switch and Baudrate/Parity with the other switches you are now ready to setup a Motor Controller Object
+
+```c
+MControl m1(1,bus1); //Setup the Motor COntroller Object with Adress 0x01 on the preiviously created MODBUS_KALEJA Object
+```
+
+Now you are ready to use the motor Controller functions.
+Example:
+
+```c
+m1.MOTOR_ON(); //Start Motor
+m1.PWM_ON(500); //Set Motor Speed to 50%
+int32_t current = m1.CURRENT(); //Read the current the Motor is drawing richt now
+m1.MOTOR_OFF(); //Stop Motor
+```
 
 
 ## Classes and Functions
