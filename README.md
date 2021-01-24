@@ -16,9 +16,9 @@ There are no additional libraries required that are not allready included into t
 	- [How to setup a Motor Controller Object](#how-to-setup-a-motor-controller-object)
 	- [Classes and Functions](#classes-and-functions)
 		- [{Class} MODBUS_KALEJA](#{class}-modbus_kaleja)
-			- [Class Functions](#class-functions)
+			- [Class Functions](#class-functions-1)
 		- [{Class} MControl](#{class}-mcontrol)
-			- [Class Functions](#class-functions)
+			- [Class Functions](#class-functions-2)
 			- [Error Codes](#error-codes)
 	- [Additional Information](#additional-information)
 
@@ -67,7 +67,7 @@ Class for setting up a Serial Connection
 | Parity | uint8_t | 0/1 | Even/None | Defines the Parity used in the RS485 net |
 | R/W-Pin | PIN | 0,1,2, ... | - | Defines the pin that the R/W Pin of the RS485 Driver is connected to |
 
-#### Class Functions
+#### Class Functions 1
 
 | Function | Description | Returns |
 | -------- | ----------- | ------- |
@@ -85,7 +85,7 @@ Class for setting up a Motor Controller Object with its unique address.
 | Device Address | uint8_t | 0x01, 0x05, ... | Defines the Address of the MODBUS RTU device which is set by the DIP Switch |
 | Bus | MODBUS_KALEJA | - | Asigns the Motor Controllor to the RS485 Net of a certain Serial Connection |
 
-#### Class Functions
+#### Class Functions 2
 
 *ErrCode values are listed [here](#error-codes).
 
