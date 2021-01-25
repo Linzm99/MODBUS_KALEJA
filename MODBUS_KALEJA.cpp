@@ -20,7 +20,7 @@
 
 
 
-uint16_t ModRTU_CRC(uint8_t *buf, int len)
+uint16_t ModRTU_CRC(uint8_t *buf, uint8_t len)
 {
   uint16_t crc = 0xFFFF;
   
@@ -40,7 +40,7 @@ uint16_t ModRTU_CRC(uint8_t *buf, int len)
 }
 
 int8_t MODBUS_KALEJA::begin(){
-  if( serialStarted == 1){
+  if( getStat() == 1){
     return -1;
   }
   pinMode(EnPin,OUTPUT);
@@ -63,11 +63,21 @@ int8_t MODBUS_KALEJA::begin(){
   else{
     return PARITY_INVALID;
   }
-  serialStarted = 1;
+  setStat(1);
   return 0;
 }
+
+uint8_t MODBUS_KALEJA::getStat(void){
+  return serialStarted;
+}
+
+void MODBUS_KALEJA::setStat(uint8_t s){
+  serialStarted = s;
+  return;
+}
+
 int8_t MODBUS_KALEJA::end(){
-  if(serialStarted == 0){
+  if(getStat() == 0){
     return -1;
   }
   SerPort.end();
@@ -75,17 +85,14 @@ int8_t MODBUS_KALEJA::end(){
 }
 
 int64_t MControl::transcieve(uint8_t RW, uint16_t addr, uint16_t data){
-  if(bus.serialStarted == 0){
-    return -3;
-  }
-  int8_t output[8] = {0};
+  uint8_t output[8] = {0};
   output[0] = address;
   output[1] = RW;
   output[2] = (uint8_t)(addr>>8);
   output[3] = (uint8_t)addr;
   output[4] = (uint8_t)(data>>8);
   output[5] = (uint8_t)data;
-  uint16_t CRC = ModRTU_CRC(output,6);
+  uint16_t CRC = (uint16_t)ModRTU_CRC(output,6);
   output[6] = (uint8_t)CRC;
   output[7] = (uint8_t)(CRC>>8);
   while(bus.SerPort.available()){
@@ -108,7 +115,7 @@ int64_t MControl::transcieve(uint8_t RW, uint16_t addr, uint16_t data){
   }
   delayMicroseconds(5);
   
-  CRC = ModRTU_CRC(input,in_len-2);
+  CRC = (uint16_t)ModRTU_CRC(input,in_len-2);
   if(input[in_len-2] != (uint8_t)CRC || input[in_len-1] != (uint8_t)(CRC>>8)){
     return -2;
   }
@@ -152,7 +159,7 @@ int8_t MControl::DEVICE_RESET(void){
 }
 
 int8_t MControl::FACTORY_DEFAULTS(void){
-  return transcieve(W,0x0003,0x4644);
+  return transcieve(W,0x0000,0x4644);
 }
 
 int8_t MControl::WATCHDOG_OFF(void){
@@ -239,24 +246,28 @@ int32_t MControl::IXR_COMP_GET(void){
   return transcieve(RH,0x0020,0x0001);
 }
 
-int8_t MControl::MOTOR_OFF(void){
-  return transcieve(W,0x0053,0x0000);
+int8_t MControl::DIR_LEFT_OFF(void){
+  return transcieve(W,0x0050,0x0000);
 }
 
-int8_t MControl::MOTOR_ON(void){
-  return transcieve(W,0x0053,0x0001);
+int8_t MControl::DIR_LEFT_ON(void){
+  return transcieve(W,0x0050,0x0001);
 }
 
-int16_t MControl::MOTOR_GET(void){
-  return transcieve(RH,0x0053,0x0001);
+int8_t MControl::DIR_LEFT_GET(void){
+  return transcieve(RH,0x0050,0x0001);
 }
 
-int8_t MControl::DIR_SET(uint8_t dir){
-  return transcieve(W,0x0054,dir);
+int8_t MControl::DIR_RIGHT_OFF(void){
+  return transcieve(W,0x0051,0x0000);
 }
 
-int16_t MControl::DIR_GET(void){
-  return transcieve(RH,0x0054,0x0001);
+int8_t MControl::DIR_RIGHT_ON(void){
+  return transcieve(W,0x0051,0x0001);
+}
+
+int8_t MControl::DIR_RIGHT_GET(void){
+  return transcieve(RH,0x0051,0x0001);
 }
 
 int8_t MControl::BRAKE_OFF(void){
@@ -300,17 +311,17 @@ int64_t MControl::SERIAL_NUMBER(void){
 }
 
 int32_t MControl::CURRENT(void){
-  return transcieve(R,0x40C1,0x0001);
+  return transcieve(R,0x4028,0x0001);
 }
 
 int32_t MControl::PWM(void){
-  return transcieve(R,0x40C2,0x0001);
+  return transcieve(R,0x4029,0x0001);
 }
 
 int16_t MControl::DIR(void){
-  return transcieve(R,0x40C3,0x0001);
+  return transcieve(R,0x402A,0x0001);
 }
 
 int32_t MControl::TEMP(void){
-  return transcieve(R,0x40C4,0x0001);
+  return transcieve(R,0x402B,0x0001);
 }

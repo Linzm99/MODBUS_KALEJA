@@ -135,12 +135,13 @@ Class for setting up a Motor Controller Object with its unique address.
 | IXR_COMP_OFF | - | ErrCode | Disable IxR Compensation |
 | IXR_COMP_ON | - | ErrCode | Enable IxR Compensation, Set Motor Internal Resistance to mOhm(1-4000) |
 | IXR_COMP_GET | - | int32_t | Get Motor Internal Resistance in mOhm |
-| MOTOR_OFF | - | ErrCode | Disable Motor |
-| MOTOR_ON | uint16_t | ErrCode | Enable Motor |
-| MOTOR_GET | - | int32_t | Get Motor State |
-| DIR_SET | uint8_t | ErrCode | Set Motor Direction 0-->Direction1 / 1-->Direction2 |
-| DIR_GET | uint16_t | ErrCode | Get Motor Direction Setting |
-| BRAKE_OFF | - | ErrCode | Disable Motor Breaking |
+| DIR_LEFT_OFF | - | ErrCode | Disable left turning direction |
+| DIR_LEFT_ON | - | ErrCode | Enable left turning direction |
+| DIR_LEFT_GET | - | int32_t | Get left turning direction settings |
+| DIR_RIGHT_OFF | - | ErrCode | Disable right turning direction |
+| DIR_RIGHT_ON | - | ErrCode | Enable right turning direction |
+| DIR_RIGHT_GET | - | int32_t | Get right turning direction settings |
+| BRAKE_OFF | - | ErrCode | Disable right Breaking |
 | BRAKE_ON | - | ErrCode | Enable Motor Breaking |
 | BRAKE_GET | - | int32_t | Get Brake Settings |
 | OVERCURRENT_SET_SHUTOFF | - | ErrCode | Set Behaviour to Overcurrent Shutoff |

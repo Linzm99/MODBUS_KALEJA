@@ -21,17 +21,20 @@ class MODBUS_KALEJA{
   private:
     uint8_t baudrate;
     uint8_t parity;
-    
+    uint8_t serialStarted;
     
     
   public:
     
-    MODBUS_KALEJA(HardwareSerial& refSer, uint8_t baud, uint8_t par, uint8_t pin):SerPort(refSer), baudrate(baud), parity(par), EnPin(pin){};
+    MODBUS_KALEJA(HardwareSerial& refSer, uint8_t baud, uint8_t par, uint8_t pin):SerPort(refSer), baudrate(baud), parity(par), EnPin(pin){
+      serialStarted = 0;
+    };
     HardwareSerial& SerPort;
     uint8_t EnPin;
-    int8_t begin();
-    int8_t end();
-    bool serialStarted;
+    int8_t begin(void);
+    int8_t end(void);
+    uint8_t getStat(void);
+    void setStat(uint8_t s);
     
 };
 
@@ -60,7 +63,7 @@ class MControl{
 
     //Current:    
     int8_t CURRENT_LIMIT_OFF(void); //Disable Current Limit
-    int8_t CURRENT_LIMIT_ON(uint16_t mA); //Enable Current Limit. Set Current Limit to Current in mA(1-4000)
+    int8_t CURRENT_LIMIT_ON(uint16_t mA); //Enable Current Limit. Set Current Limit to Current in mA(500-4000)
     int32_t CURRENT_LIMIT_GET(void); //Get Current Limit in mA
 
     //Start Ramp:
@@ -75,8 +78,8 @@ class MControl{
 
     //Rotational Speed(PWM):
     int8_t PWM_OFF(void); //Set Motor Speed to 0
-    int8_t PWM_ON(uint16_t pwm); //Set Motor Speed to pwm/10 in Percent(50-1000)
-    int32_t PWM_GET(void); //get Motor PWM Settings in 10*Percent
+    int8_t PWM_ON(uint16_t pwm); //Set Motor Speed to pwm/327 in Percent(1631-32767)
+    int32_t PWM_GET(void); //get Motor PWM Settings in 327*Percent
 
     //Current monitoring delay
     int8_t CM_DELAY_OFF(void); //Disable current monitoring delay
@@ -88,14 +91,15 @@ class MControl{
     int8_t IXR_COMP_ON(uint16_t mOhm); //Enable IxR Compensation, Set Motor Internal Resistance to mOhm(1-4000)
     int32_t IXR_COMP_GET(void); //Get Motor Internal Resistance in mOhm
 
-    //Motor Control:
-    int8_t MOTOR_OFF(void); //Disable Motor
-    int8_t MOTOR_ON(void); //Enable Motor
-    int16_t MOTOR_GET(void); //Get Motor State
+    //Dir right settings
+    int8_t DIR_LEFT_OFF(void); //Disable left turning direction
+    int8_t DIR_LEFT_ON(void); //Enable left turning direction
+    int8_t DIR_LEFT_GET(void); //Get left turning direction settings
 
-    //Motor Direction:
-    int8_t DIR_SET(uint8_t dir); //Set Motor Direction 0-->Direction1 / 1-->Direction2
-    int16_t DIR_GET(void); //get Motor Direction Setting
+    //Dir right settings
+    int8_t DIR_RIGHT_OFF(void); //Disable right turning direction
+    int8_t DIR_RIGHT_ON(void); //Enable right turning direction
+    int8_t DIR_RIGHT_GET(void); //Get right turning direction settings
 
     //Brake Selection:
     int8_t BRAKE_OFF(void); //Disable Motor Breaking
