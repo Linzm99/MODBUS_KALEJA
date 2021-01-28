@@ -82,8 +82,8 @@ Class for setting up a Serial Connection
 | Parameter | Type | Input/Example | Value | Description |
 | --------- | ---- | ------------ | ----- | ----------- |
 | Serial Port | HardwareSerial | Serial, Serial1, ... | - | Defines the Serial port that the RS485 Driver is connected to |
-| Baudrate | uint8_t | 0/1 | 19200/38400 | Defines the Baudrate at which the RS485 net is running |
-| Parity | uint8_t | 0/1 | EVEN/NONE | Defines the Parity used in the RS485 net |
+| Baudrate | uint8_t | 0/1 | B_19200/ B_38400 | Defines the Baudrate at which the RS485 net is running |
+| Parity | uint8_t | 0/1 | P_EVEN/ P_NONE | Defines the Parity used in the RS485 net |
 | R/W-Pin | PIN | 0,1,2, ... | - | Defines the pin that the R/W Pin of the RS485 Driver is connected to |
 
 #### Class Functions 1
