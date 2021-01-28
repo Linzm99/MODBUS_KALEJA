@@ -1,7 +1,5 @@
 # Modbus Library for KALEJA Devices
 
-!This Version is not ready to use!
-
 This Library brings support for KALEJA MODBUS Motor Controllers to the Arduino Environment. It lets you use all functionalities that you could have used with plain MODBUS commands, but you only have to call the functions and library does the rest.
 
 All you need is a Hardware serial port on your controller to drive the RS485 Chip.
@@ -47,6 +45,8 @@ To start the Serial Connection you also have to call the begin() function of you
 
 ```c
 MODBUS_KALEJA bus1(Serial,1,1,2); //Setup an object of class MODBUS_KALEJA on the Serial Port, 38400 Baud, Parity = None, R/W pin on pin D2
+//OR
+MODBUS_KALEJA bus1(Serial,B_38000,P_NONE,2); //Same as above, but with using the defines as inputs
 bus1.begin(); //Start the Serial Connection
 ```
 
@@ -57,17 +57,17 @@ Your Bus is now running and ready to talk to Motor Controllers.
 After selecting the device address with the DIP-Switch and Baudrate/Parity with the other switches you are now ready to setup a Motor Controller Object
 
 ```c
-MControl m1(1,bus1); //Setup the Motor COntroller Object with Adress 0x01 on the preiviously created MODBUS_KALEJA Object
+MControl motorController1(1,bus1); //Setup the Motor COntroller Object with Adress 0x01 on the preiviously created MODBUS_KALEJA Object
 ```
 
-Now you are ready to use the motor Controller functions.
+Now you are ready to use the Motor Controller functions.
 Example:
 
 ```c
-m1.MOTOR_ON(); //Start Motor
-m1.PWM_ON(500); //Set Motor Speed to 50%
-int32_t current = m1.CURRENT(); //Read the current the Motor is drawing richt now
-m1.MOTOR_OFF(); //Stop Motor
+motorController1.MOTOR_ON(); //Start Motor
+motorController1.PWM_ON(500); //Set Motor Speed to 50%
+int32_t current = motorController1.CURRENT(); //Read the current the Motor is drawing richt now
+motorController1.MOTOR_OFF(); //Stop Motor
 ```
 
 
@@ -83,7 +83,7 @@ Class for setting up a Serial Connection
 | --------- | ---- | ------------ | ----- | ----------- |
 | Serial Port | HardwareSerial | Serial, Serial1, ... | - | Defines the Serial port that the RS485 Driver is connected to |
 | Baudrate | uint8_t | 0/1 | 19200/38400 | Defines the Baudrate at which the RS485 net is running |
-| Parity | uint8_t | 0/1 | Even/None | Defines the Parity used in the RS485 net |
+| Parity | uint8_t | 0/1 | EVEN/NONE | Defines the Parity used in the RS485 net |
 | R/W-Pin | PIN | 0,1,2, ... | - | Defines the pin that the R/W Pin of the RS485 Driver is connected to |
 
 #### Class Functions 1
@@ -110,6 +110,9 @@ Class for setting up a Motor Controller Object with its unique address.
 
 | Function | Input | Returns | Description |
 | -------- | :---: | :-----: | ----------- |
+| MC_WRITE | uint16_t a,uint16_t d| ErrCode | Write Data d at Address a |
+| MC_READ_HOLD | uint16_t a | int64_t d | Read Data d from holding register a |
+| MC_READ | uint16_t a, uint8_t n | int64_t d | Read Data d from n read-only registers starting at address a |
 | EEPROM_SAVE | - | ErrCode | Save MODBUS Settings to EEPROM |
 | EEPROM_RELOAD | - | ErrCode | Load MODBUS Settings from EEPROM |
 | DEVICE_RESET | - | ErrCode | Softreset Device |

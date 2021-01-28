@@ -13,7 +13,11 @@
 #include <Arduino.h>
 
 //Variables:
+#define B_38400 0x01
+#define B_19200 0x00
 
+#define P_EVEN 0x00
+#define P_NONE 0x01
 
 
 //Classes:
@@ -49,6 +53,11 @@ class MControl{
     
   public:
     MControl(uint8_t device_address, MODBUS_KALEJA Ser): address(device_address), bus(Ser){};
+
+	//General Functions (Dont't use if you dont't know what you are doing)
+	int8_t MC_WRITE(uint16_t addr, uint16_t data); //Write one register
+	int64_t MC_READ_HOLD(uint16_t addr); //Read one holding register
+	int64_t MC_READ_ROM(uint16_t addr, uint8_t n); //Read n read only registers
 
     //System Control:
     int8_t EEPROM_SAVE(void); //Save Settings to EEPROM

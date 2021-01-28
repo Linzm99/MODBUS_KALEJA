@@ -145,6 +145,16 @@ int64_t MControl::transcieve(uint8_t RW, uint16_t addr, uint16_t data){
 }
 
 
+int8_t MControl::MC_WRITE(uint16_t addr, uint16_t data){
+	return transcieve(W,addr,data);
+}
+int64_t MControl::MC_READ_HOLD(uint16_t addr){
+	return transcieve(RH,addr,0x0001);
+}
+int64_t MControl::MC_READ_ROM(uint16_t addr, uint8_t n){
+	return transcieve(R,addr,n);
+}
+
 //
 int8_t MControl::EEPROM_SAVE(void){
   return transcieve(W,0x0000,0x4B4C);
