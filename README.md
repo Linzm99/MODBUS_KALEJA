@@ -110,9 +110,9 @@ Class for setting up a Motor Controller Object with its unique address.
 
 | Function | Input | Returns | Description |
 | -------- | :---: | :-----: | ----------- |
-| MC_WRITE | uint16_t a,uint16_t d| ErrCode | Write Data d at Address a |
+| MC_WRITE | uint16_t a ,uint16_t d| ErrCode | Write Data d at Address a |
 | MC_READ_HOLD | uint16_t a | int64_t d | Read Data d from holding register a |
-| MC_READ | uint16_t a, uint8_t n | int64_t d | Read Data d from n read-only registers starting at address a |
+| MC_READ | uint16_t a ,uint8_t n | int64_t d | Read Data d from n read-only registers starting at address a |
 | EEPROM_SAVE | - | ErrCode | Save MODBUS Settings to EEPROM |
 | EEPROM_RELOAD | - | ErrCode | Load MODBUS Settings from EEPROM |
 | DEVICE_RESET | - | ErrCode | Softreset Device |
